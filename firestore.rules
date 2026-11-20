@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 9.2 Convenciones de Firestore: Acceso solo desde la API (Admin SDK).
+    // Las reglas de Firestore niegan todo a los clientes.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
